@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.grishuchkov.weather.entity.User;
-import ru.grishuchkov.weather.model.UserRegistration;
+import ru.grishuchkov.weather.model.UserRegistrationDto;
 import ru.grishuchkov.weather.repo.UserRepository;
 
 import java.util.Collections;
@@ -33,10 +33,10 @@ public class UserService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), getUserAuthorities());
     }
 
-    public void save(UserRegistration userRegistration) {
-        String encodePassword = getEncodePassword(userRegistration.getPassword());
+    public void save(UserRegistrationDto userRegistrationDto) {
+        String encodePassword = getEncodePassword(userRegistrationDto.getPassword());
 
-        User user = new User(userRegistration.getLogin(), encodePassword, "USER");
+        User user = new User(userRegistrationDto.getLogin(), encodePassword, "USER");
         userRepository.save(user);
     }
 

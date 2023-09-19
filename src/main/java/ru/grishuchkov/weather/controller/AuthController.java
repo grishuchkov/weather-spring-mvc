@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.grishuchkov.weather.model.UserRegistration;
+import ru.grishuchkov.weather.model.UserRegistrationDto;
 import ru.grishuchkov.weather.service.UserService;
 
 @Controller
@@ -26,15 +26,15 @@ public class AuthController {
 
     @GetMapping("/register")
     public String reg(Model model) {
-        model.addAttribute("userRegistration", new UserRegistration());
+        model.addAttribute("userRegistrationDto", new UserRegistrationDto());
 
         return "register";
     }
 
     @PostMapping("/register")
-    public String registrationUser(@ModelAttribute("userRegistration") UserRegistration userRegistration) {
+    public String registrationUser(@ModelAttribute("userRegistrationDto") UserRegistrationDto userRegistrationDto) {
 
-        userService.save(userRegistration);
+        userService.save(userRegistrationDto);
 
         return "redirect:login";
     }
