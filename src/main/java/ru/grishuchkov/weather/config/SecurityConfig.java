@@ -34,6 +34,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successForwardUrl("/main")
                 .permitAll()
                 .and()
+                .logout()
+                .logoutSuccessUrl("/login")
+                .and()
                 .httpBasic();
     }
 
