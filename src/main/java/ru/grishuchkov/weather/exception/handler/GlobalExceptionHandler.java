@@ -1,8 +1,11 @@
-package ru.grishuchkov.weather.exception;
+package ru.grishuchkov.weather.exception.handler;
 
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
+import ru.grishuchkov.weather.exception.DuplicateLoginException;
+import ru.grishuchkov.weather.exception.UserNotFoundException;
 import ru.grishuchkov.weather.model.UserRegistrationDto;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class GlobalExceptionHandler implements HandlerExceptionResolver {
     @Override
-    public ModelAndView resolveException(HttpServletRequest httpServletRequest,
-                                         HttpServletResponse httpServletResponse,
+    public ModelAndView resolveException(HttpServletRequest request,
+                                         HttpServletResponse response,
                                          Object o,
                                          Exception ex) {
 
@@ -23,6 +26,9 @@ public class GlobalExceptionHandler implements HandlerExceptionResolver {
             return mav;
         }
 
+        if (ex instanceof UserNotFoundException) {
+            throw new BadCredentialsException(ex.getMessage());
+        }
 
         return null;
     }
