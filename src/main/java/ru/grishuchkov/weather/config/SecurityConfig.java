@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import ru.grishuchkov.weather.exception.handler.AuthExceptionHandler;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -23,21 +24,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .antMatchers("/reg", "/register", "/login").anonymous()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .usernameParameter("login")
-                .defaultSuccessUrl("/main")
-                .successForwardUrl("/main")
-                .permitAll()
-                .and()
-                .logout()
-                .logoutSuccessUrl("/login")
-                .and()
-                .httpBasic();
+            .authorizeRequests()
+            .antMatchers("/reg/**", "/register/**", "/login", "/login?").anonymous()
+            .anyRequest().authenticated()
+        .and()
+            .formLogin()
+            .failureHandler(new AuthExceptionHandler())
+            .loginPage("/login")
+            .usernameParameter("login")
+            .defaultSuccessUrl("/main")
+            .successForwardUrl("/main")
+        .and()
+            .logout()
+            .logoutSuccessUrl("/login")
+        .and()
+            .httpBasic();
     }
 
     @Bean

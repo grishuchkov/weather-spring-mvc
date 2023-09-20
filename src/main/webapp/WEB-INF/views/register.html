@@ -26,6 +26,10 @@
                         <form th:method="POST" th:action="@{/register}" th:object="${userRegistrationDto}"
                               class="needs-validation" novalidate="" autocomplete="off">
 
+                            <div th:if="${param.error}">
+                                <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+                            </div>
+
                             <div th:if="${error}">
                                 <div class="alert alert-danger" role="alert">
                                     <p th:text="${error}"></p>
