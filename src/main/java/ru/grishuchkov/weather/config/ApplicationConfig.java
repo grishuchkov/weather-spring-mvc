@@ -17,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import ru.grishuchkov.weather.exception.handler.AuthExceptionHandler;
 
 import javax.sql.DataSource;
 
@@ -81,6 +82,11 @@ public class ApplicationConfig implements WebMvcConfigurer {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthExceptionHandler authExceptionHandler() {
+        return new AuthExceptionHandler();
     }
 
 }
