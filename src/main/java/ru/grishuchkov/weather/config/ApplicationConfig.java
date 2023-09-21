@@ -1,5 +1,6 @@
 package ru.grishuchkov.weather.config;
 
+import org.hibernate.validator.HibernateValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +21,9 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import ru.grishuchkov.weather.exception.handler.AuthExceptionHandler;
 
 import javax.sql.DataSource;
+import javax.validation.Validation;
+import javax.validation.Validator;
+
 
 @Configuration
 @ComponentScan("ru.grishuchkov.weather")
@@ -34,6 +38,11 @@ public class ApplicationConfig implements WebMvcConfigurer {
     public ApplicationConfig(ApplicationContext applicationContext, Environment environment) {
         this.applicationContext = applicationContext;
         this.environment = environment;
+    }
+
+    @Bean
+    public Validator validator() {
+        return Validation.byProvider(HibernateValidator.class).configure().failFast(true).buildValidatorFactory().getValidator();
     }
 
     @Bean

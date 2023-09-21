@@ -1,15 +1,15 @@
 package ru.grishuchkov.weather.model;
 
+
+import javax.validation.constraints.Size;
+
 public class UserRegistrationDto {
+    @Size(min = 5, max = 25, message = "The login must be from 5 to 25 characters")
     private String login;
+    @Size(min = 5, max = 25, message = "The password must be from 5 to 25 characters")
     private String password;
 
     public UserRegistrationDto() {
-    }
-
-    public UserRegistrationDto(String login, String password) {
-        this.login = login;
-        this.password = password;
     }
 
     public String getLogin() {

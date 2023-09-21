@@ -24,7 +24,7 @@
 
 
                         <form th:method="POST" th:action="@{/register}" th:object="${userRegistrationDto}"
-                              class="needs-validation" novalidate="" autocomplete="off">
+                              class="needs-validation" autocomplete="off">
 
                             <div th:if="${param.error}">
                                 <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
@@ -39,21 +39,18 @@
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="login">Придумайте логин:</label>
 
-                                <input type="text" id="login" th:field="*{login}" class="form-control" required
-                                       autofocus>
+                                <input type="text" id="login" th:field="*{login}" class="form-control" required autofocus>
 
-                                <div class="invalid-feedback">
-                                    Ошибка в логине
-                                </div>
+                                <div th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Name error</div>
+
                             </div>
 
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="password">Придумайте пароль:</label>
-                                <input id="password" th:field="*{password}" type="password" class="form-control"
-                                       name="password" required>
-                                <div class="invalid-feedback">
-                                    Ошибка в пароле
-                                </div>
+
+                                <input id="password" th:field="*{password}" type="password" class="form-control" name="password" required>
+
+                                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name error</div>
                             </div>
 
                             <div class="d-flex align-items-center">
