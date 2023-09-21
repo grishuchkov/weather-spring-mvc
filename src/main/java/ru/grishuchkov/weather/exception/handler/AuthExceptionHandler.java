@@ -25,7 +25,7 @@ public class AuthExceptionHandler implements AuthenticationFailureHandler {
         }
 
         if (ex instanceof BadCredentialsException) {
-            sendRedirectWithMessage(response, "login.error.invalid_credentials");
+            sendRedirectWithMessage(response, ex.getMessage());
         }
     }
 

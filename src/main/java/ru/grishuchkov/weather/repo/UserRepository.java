@@ -25,7 +25,7 @@ public class UserRepository {
         return jdbcTemplate.query(SQL, new Object[]{login},
                         new BeanPropertyRowMapper<>(User.class)).stream()
                 .findFirst()
-                .orElseThrow(() -> new UserNotFoundException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException("User not found, bro"));
     }
 
     public void save(User user) {
