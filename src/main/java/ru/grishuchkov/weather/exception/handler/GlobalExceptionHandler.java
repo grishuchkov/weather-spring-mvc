@@ -4,9 +4,9 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
+import ru.grishuchkov.weather.dto.UserRegistrationDto;
 import ru.grishuchkov.weather.exception.DuplicateLoginException;
 import ru.grishuchkov.weather.exception.UserNotFoundException;
-import ru.grishuchkov.weather.model.UserRegistrationDto;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

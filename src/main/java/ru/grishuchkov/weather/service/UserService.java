@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.grishuchkov.weather.dto.UserRegistrationDto;
 import ru.grishuchkov.weather.entity.User;
-import ru.grishuchkov.weather.model.UserRegistrationDto;
 import ru.grishuchkov.weather.repo.UserRepository;
 
 import java.util.Collections;
