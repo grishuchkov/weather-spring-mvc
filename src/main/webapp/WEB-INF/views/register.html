@@ -16,7 +16,8 @@
         <div class="row justify-content-sm-center h-100">
             <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
                 <div class="text-center my-5">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu3.webp" alt="logo" width="200px">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu3.webp" alt="logo"
+                         width="200px">
                 </div>
                 <div class="card shadow-lg">
                     <div class="card-body p-5">
@@ -39,7 +40,8 @@
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="login">Придумайте логин:</label>
 
-                                <input type="text" id="login" th:field="*{login}" class="form-control" required autofocus>
+                                <input type="text" id="login" th:field="*{login}" class="form-control" required
+                                       autofocus>
 
                                 <div th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Name error</div>
 
@@ -48,7 +50,8 @@
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="password">Придумайте пароль:</label>
 
-                                <input id="password" th:field="*{password}" type="password" class="form-control" name="password" required>
+                                <input id="password" th:field="*{password}" type="password" class="form-control"
+                                       name="password" required>
 
                                 <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name error</div>
                             </div>
@@ -58,7 +61,7 @@
                                     Зарегистрироваться
                                 </button>
                             </div>
-
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         </form>
                     </div>
                     <div class="card-footer py-3 border-0">
