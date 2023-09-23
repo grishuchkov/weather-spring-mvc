@@ -1,5 +1,6 @@
 package ru.grishuchkov.weather.controller;
 
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +38,7 @@ public class PageController {
     }
 
     @PostMapping("/search-location")
+    @SneakyThrows
     public String searchLocation(@ModelAttribute @Valid LocationSearchDto locationSearchDto,
                                  BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {

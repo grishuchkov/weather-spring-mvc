@@ -1,5 +1,6 @@
 package ru.grishuchkov.weather.config;
 
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.hibernate.validator.HibernateValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -12,6 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -26,9 +28,11 @@ import javax.validation.Validator;
 
 
 @Configuration
-@ComponentScan("ru.grishuchkov.weather")
 @EnableWebMvc
+
+@ComponentScan("ru.grishuchkov.weather")
 @PropertySource("classpath:database.properties")
+@PropertySource("classpath:api.properties")
 public class ApplicationConfig implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;
@@ -43,6 +47,11 @@ public class ApplicationConfig implements WebMvcConfigurer {
     @Bean
     public Validator validator() {
         return Validation.byProvider(HibernateValidator.class).configure().failFast(true).buildValidatorFactory().getValidator();
+    }
+
+    @Bean
+    public JsonMapper jsonMapper(){
+        return new JsonMapper();
     }
 
     @Bean
