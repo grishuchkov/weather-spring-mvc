@@ -48,6 +48,6 @@ public class PageController {
         List<Location> locationsByName = locationService.getLocationsByName(locationSearchDto.getLocationName());
 
         model.addAttribute("locations", locationsByName);
-        return "main";
+        return "find-location";
     }
 }
