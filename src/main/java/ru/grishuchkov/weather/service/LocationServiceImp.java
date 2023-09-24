@@ -53,8 +53,9 @@ public class LocationServiceImp implements LocationService {
 
     @Override
     public List<Location> getLocationsByName(String name) throws URISyntaxException, IOException, InterruptedException {
-        List<Location> resultList;
+        //todo: make refactor!!!
 
+        name = name.replaceAll("\\s","-");
 
         String uriTemplate = "http://api.openweathermap.org/geo/1.0/direct?q=%s&limit=10&appid=%s";
         String uri = String.format(uriTemplate, name, apiKey);
@@ -68,7 +69,7 @@ public class LocationServiceImp implements LocationService {
 
         HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
 
-        resultList = jsonMapper.readValue(response.body(), new TypeReference<>() {
+        List<Location> resultList = jsonMapper.readValue(response.body(), new TypeReference<>() {
         });
 
         return resultList;
