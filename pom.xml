@@ -21,10 +21,19 @@
         <lombok.version>1.18.24</lombok.version>
         <junit.version>3.8.1</junit.version>
         <jackson.version>2.15.2</jackson.version>
+
+        <flyway.version>9.16.3</flyway.version>
     </properties>
 
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>${flyway.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

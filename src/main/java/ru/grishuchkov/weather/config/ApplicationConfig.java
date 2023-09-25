@@ -1,13 +1,11 @@
 package ru.grishuchkov.weather.config;
 
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import org.flywaydb.core.Flyway;
 import org.hibernate.validator.HibernateValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -92,10 +90,24 @@ public class ApplicationConfig implements WebMvcConfigurer {
     }
 
     @Bean
+    public Flyway flyway(DataSource dataSource){
+        Flyway flyway = Flyway.configure()
+                .dataSource(dataSource)
+                .locations("classpath:db/migration")
+                .load();
+
+        flyway.migrate();
+
+        return flyway;
+    }
+
+    @Bean
     public JdbcTemplate jdbcTemplate() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource());
         return jdbcTemplate;
     }
+
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
