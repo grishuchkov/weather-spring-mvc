@@ -8,8 +8,7 @@ import java.util.List;
 
 public interface LocationService {
 
-    @Deprecated(since = "Only for testing")
-    public List<Location> getLocationsByNameInMemory(String name);
-
     public List<Location> getLocationsByName(String name) throws URISyntaxException, IOException, InterruptedException;
+
+    void setNewLocation(Location location);
 }
