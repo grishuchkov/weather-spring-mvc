@@ -13,6 +13,7 @@ import ru.grishuchkov.weather.entity.Location;
 import ru.grishuchkov.weather.service.ifc.LocationService;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -41,9 +42,9 @@ public class LocationSearchController {
     }
 
     @PostMapping("/add")
-    public String addLocation(@ModelAttribute Location location){
+    public String addLocation(@ModelAttribute Location location, Principal principal){
 
-        locationService.setNewLocation(location);
+        locationService.saveNewLocationFromUser(location, principal.getName());
 
         return "redirect:/main";
     }

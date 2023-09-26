@@ -10,5 +10,5 @@ public interface LocationService {
 
     public List<Location> getLocationsByName(String name) throws URISyntaxException, IOException, InterruptedException;
 
-    void setNewLocation(Location location);
+    void saveNewLocationFromUser(Location location, String username);
 }
