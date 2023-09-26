@@ -1,1 +1,2 @@
 openweather.token=
+openweather.url-for-search-location-by-name=http://api.openweathermap.org/geo/1.0/direct
