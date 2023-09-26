@@ -8,7 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.grishuchkov.weather.dto.UserRegistrationDto;
 import ru.grishuchkov.weather.entity.User;
-import ru.grishuchkov.weather.repo.UserRepository;
+import ru.grishuchkov.weather.repo.UserRepositoryImpl;
+import ru.grishuchkov.weather.repo.ifc.UserRepository;
 
 import java.util.Collections;
 import java.util.List;

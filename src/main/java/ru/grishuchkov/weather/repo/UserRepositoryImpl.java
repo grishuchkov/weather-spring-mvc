@@ -8,17 +8,19 @@ import org.springframework.stereotype.Repository;
 import ru.grishuchkov.weather.entity.User;
 import ru.grishuchkov.weather.exception.DuplicateLoginException;
 import ru.grishuchkov.weather.exception.UserNotFoundException;
+import ru.grishuchkov.weather.repo.ifc.UserRepository;
 
 @Repository
-public class UserRepository {
+public class UserRepositoryImpl implements UserRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public UserRepository(JdbcTemplate jdbcTemplate) {
+    public UserRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Override
     public User getUserByLogin(String login) {
         String SQL = "SELECT * FROM users WHERE login =?";
 
@@ -28,6 +30,7 @@ public class UserRepository {
                 .orElseThrow(() -> new UserNotFoundException("User not found, bro"));
     }
 
+    @Override
     public void save(User user) {
         String SQL = "INSERT INTO users(login, password, role) VALUES (?,?,?)";
 
