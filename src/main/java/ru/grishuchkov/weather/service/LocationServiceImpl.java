@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.util.UriComponentsBuilder;
 import ru.grishuchkov.weather.entity.Location;
 import ru.grishuchkov.weather.service.ifc.LocationService;
 
@@ -15,36 +16,40 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
-public class LocationServiceImp implements LocationService {
+public class LocationServiceImpl implements LocationService {
 
     private final JsonMapper jsonMapper;
 
     @Autowired
-    public LocationServiceImp(JsonMapper jsonMapper) {
+    public LocationServiceImpl(JsonMapper jsonMapper) {
         this.jsonMapper = jsonMapper;
     }
 
     @Value("${openweather.token}")
-    private String apiKey;
+    private String API_KEY;
 
     @Override
     public List<Location> getLocationsByName(String name) throws URISyntaxException, IOException, InterruptedException {
-        //todo: make refactor!!!
+        //todo: weather API Client class --impl--> OpenWeatherApiClient : getLocationsByName and getWeatherByCoordinates;
 
         name = name.replaceAll("\\s","-");
 
-        String uriTemplate = "http://api.openweathermap.org/geo/1.0/direct?q=%s&limit=10&appid=%s";
-        String uri = String.format(uriTemplate, name, apiKey);
+        final String BASE_API_URL = "http://api.openweathermap.org/geo/1.0/direct";
 
+        String urlencoded = UriComponentsBuilder.fromHttpUrl(BASE_API_URL)
+                .queryParam("q", name)
+                .queryParam("limit", 10)
+                .queryParam("appid", API_KEY)
+                .queryParam("units", "metric")
+                .encode()
+                .toUriString();
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder()
-                .uri(new URI(uri))
+                .uri(new URI(urlencoded))
                 .GET()
                 .build();
 
