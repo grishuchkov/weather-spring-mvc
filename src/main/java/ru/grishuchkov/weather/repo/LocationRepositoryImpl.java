@@ -21,8 +21,14 @@ public class LocationRepositoryImpl implements LocationRepository {
 
     @Override
     public void saveNewLocationByUser(Location location, User user) {
-        String SQL = "INSERT INTO locations(name, user_login, latitude, longitude) VALUES (?,?,?,?)";
+        String SQL = "INSERT INTO locations(user_login, name, country, state, latitude, longitude) VALUES (?,?,?,?,?,?)";
 
-        jdbcTemplate.update(SQL, location.getName(), user.getLogin(), location.getLat(), location.getLon());
+        jdbcTemplate.update(SQL,
+                user.getLogin(),
+                location.getName(),
+                location.getCountry(),
+                location.getState(),
+                location.getLat(),
+                location.getLon());
     }
 }
