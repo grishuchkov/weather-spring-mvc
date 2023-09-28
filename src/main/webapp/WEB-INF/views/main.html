@@ -11,6 +11,47 @@
 
 <div th:replace="~{navbar :: navbar}"></div>
 
+<div class="container">
+    <div class="row row-cols-xxl-4 row-cols-xl-3 row-cols-md-2 row-cols-sm-1 row-cols-1  g-4">
+        <div th:each="weather : ${weatherViewDtoList}">
+
+            <div class="col mx-auto">
+                <div class="card text-center mx-auto" style="width: 18rem;">
+                    <div class="card-body">
+                        <form th:action="@{#}" method="post">
+
+                            <h5 class="card-title" th:text="${weather.getName()}">Card title</h5>
+
+                            <p class="card-text">
+                                <div th:if="${weather.getState() != null}">
+                                    <span th:text="${weather.getCountry()} + ' | ' + ${weather.getState()}"></span>
+                                </div>
+
+                                <div th:if="${weather.getState() == null}">
+                                    <span th:text="${weather.getCountry()}"></span>
+                                </div>
+
+                                <img th:src="'https://openweathermap.org/img/wn/' + ${weather.getWeatherIconCode()} + '@2x.png'" width="100px" />
+                                <p th:text="${weather.getWeatherDescription()}"></p>
+                            </p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item" th:text="'Current temperature: ' + ${weather.getTemperature()} + ' °C'">Температура</li>
+                                <li class="list-group-item" th:text="'Feels like: ' + ${weather.getTemperatureFeelsLike()}+ ' °C'">Ощущается как</li>
+                                <li class="list-group-item" th:text="'Pressure: ' + ${weather.getPressure()}+ ' mBar'">Давление</li>
+                                <li class="list-group-item" th:text="'Wind speed: ' + ${weather.getWindSpeed()}+ ' m/sec'">Скорость ветра</li>
+                                <li class="list-group-item" th:text="'Sunrise at: ' + ${weather.getSunrise()}">Восход: </li>
+                                <li class="list-group-item" th:text="'Sunset at: ' + ${weather.getSunset()}">Закат: </li>
+                            </ul>
+
+                            <button type="submit" class="btn btn-outline-danger mt-1">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
