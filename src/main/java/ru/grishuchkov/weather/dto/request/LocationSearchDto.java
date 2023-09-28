@@ -1,4 +1,4 @@
-package ru.grishuchkov.weather.dto;
+package ru.grishuchkov.weather.dto.request;
 
 import javax.validation.constraints.Size;
 

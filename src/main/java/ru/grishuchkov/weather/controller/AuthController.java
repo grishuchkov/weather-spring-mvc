@@ -8,7 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.grishuchkov.weather.dto.UserRegistrationDto;
+import ru.grishuchkov.weather.dto.request.UserRegistrationDto;
 import ru.grishuchkov.weather.service.UserService;
 
 import javax.validation.Valid;

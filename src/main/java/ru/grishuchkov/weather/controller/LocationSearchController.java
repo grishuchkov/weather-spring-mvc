@@ -8,7 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.grishuchkov.weather.dto.LocationSearchDto;
+import ru.grishuchkov.weather.dto.request.LocationSearchDto;
 import ru.grishuchkov.weather.entity.Location;
 import ru.grishuchkov.weather.service.ifc.LocationService;
 
