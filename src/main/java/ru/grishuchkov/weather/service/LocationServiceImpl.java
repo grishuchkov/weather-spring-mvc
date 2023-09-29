@@ -42,11 +42,15 @@ public class LocationServiceImpl implements LocationService {
         return resultList;
     }
 
-
     @Override
     public void saveNewLocationFromUser(Location location, String username) {
 
         locationRepository.saveNewLocationByUser(location, new User(username));
+    }
+
+    @Override
+    public void deleteUserLocation(Location location, String username) {
+        locationRepository.deleteLocationByCoordinatesAndUserLogin(location.getLat(), location.getLon(), username);
     }
 
     private String prepareLocationName(String name) {

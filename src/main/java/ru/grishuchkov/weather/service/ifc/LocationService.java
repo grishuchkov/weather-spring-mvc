@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface LocationService {
 
-    public List<Location> getLocationsByName(String name) throws URISyntaxException, IOException, InterruptedException;
+    List<Location> getLocationsByName(String name) throws URISyntaxException, IOException, InterruptedException;
 
     void saveNewLocationFromUser(Location location, String username);
+
+    void deleteUserLocation(Location location, String username);
 }

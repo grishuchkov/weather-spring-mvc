@@ -50,9 +50,10 @@ public class LocationController {
         return "redirect:/main";
     }
 
-    @GetMapping("/delete")
+    @PostMapping("/delete")
     public String deleteLocations(@ModelAttribute Location location, Principal principal){
 
+        locationService.deleteUserLocation(location, principal.getName());
         return "redirect:/main";
-    };
+    }
 }

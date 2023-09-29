@@ -18,7 +18,7 @@
             <div class="col mx-auto">
                 <div class="card text-center mx-auto" style="width: 18rem;">
                     <div class="card-body">
-                        <form th:action="@{#}" method="post">
+                        <form th:action="@{/location/delete}" method="post">
 
                             <h5 class="card-title" th:text="${weather.location.getName()}">Card title</h5>
 
@@ -42,6 +42,12 @@
                                 <li class="list-group-item" th:text="'Sunrise at: ' + ${weather.getSunrise()}">Восход: </li>
                                 <li class="list-group-item" th:text="'Sunset at: ' + ${weather.getSunset()}">Закат: </li>
                             </ul>
+
+                            <input type="hidden" th:value="${weather.location.name}" name="name">
+                            <input type="hidden" th:value="${weather.location.country}" name="country">
+                            <input type="hidden" th:value="${weather.location.state}" name="state">
+                            <input type="hidden" th:value="${weather.location.lat}" name="lat">
+                            <input type="hidden" th:value="${weather.location.lon}" name="lon">
 
                             <button type="submit" class="btn btn-outline-danger mt-1">Delete</button>
                         </form>
