@@ -1,5 +1,6 @@
 package ru.grishuchkov.weather.service;
 
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.grishuchkov.weather.dto.response.WeatherViewDto;
@@ -12,6 +13,9 @@ import ru.grishuchkov.weather.utils.HttpResponseToWeatherDtoMapper;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 @Service
 public class WeatherServiceImpl implements WeatherService {
@@ -26,15 +30,28 @@ public class WeatherServiceImpl implements WeatherService {
     }
 
     @Override
+    @SneakyThrows
     public List<WeatherViewDto> getWeatherListForUserLocations(String userLogin) {
         HttpResponseToWeatherDtoMapper mapper = new HttpResponseToWeatherDtoMapper();
 
+        ExecutorService executor = Executors.newFixedThreadPool(20);
         List<Location> userLocations = locationRepository.getLocationsByUserLogin(userLogin);
+
+        List<Future<HttpResponse<String>>> futures = new ArrayList<>();
         List<WeatherViewDto> resultWeathersList = new ArrayList<>();
 
-        for (Location location : userLocations) {
-            HttpResponse<String> weatherResponse = weatherApiClient.getWeatherByCoordinates(location.getLat(), location.getLon());
-            WeatherViewDto responseWeatherDTO = mapper.map(weatherResponse);
+        for (Location loc : userLocations) {
+            Future<HttpResponse<String>> future = executor.submit(() -> {
+                return weatherApiClient.getWeatherByCoordinates(loc.getLat(), loc.getLon());
+            });
+            futures.add(future);
+        }
+
+        for (int i = 0; i < futures.size(); i++) {
+            HttpResponse<String> response = futures.get(i).get();
+            Location location = userLocations.get(i);
+
+            WeatherViewDto responseWeatherDTO = mapper.map(response);
             responseWeatherDTO.setLocation(location);
             resultWeathersList.add(responseWeatherDTO);
         }
