@@ -5,7 +5,7 @@
 
             <a th:href = "@{/main}" class="navbar-brand">Weather-MVC</a>
 
-            <form accept-charset="UTF-8" class="d-flex" role="search" method="POST" action="#" th:action="@{/search-location}" th:object="${locationSearchDto}">
+            <form accept-charset="UTF-8" class="d-flex" role="search" method="POST" action="#" th:action="@{/location/search}" th:object="${locationSearchDto}">
 
                 <input class="form-control me-2" required th:field="*{locationName}" type="text" placeholder="Search location" aria-label="Search">
 

@@ -18,7 +18,7 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
-@RequestMapping("/search-location")
+@RequestMapping("/location")
 public class LocationController {
 
     LocationService locationService;
@@ -29,7 +29,7 @@ public class LocationController {
     }
 
     @SneakyThrows
-    @PostMapping
+    @PostMapping("/search")
     public String searchLocation(@ModelAttribute @Valid LocationSearchDto locationSearchDto,
                                  BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
