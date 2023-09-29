@@ -1,15 +1,17 @@
 package ru.grishuchkov.weather.dto.response;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import ru.grishuchkov.weather.entity.Location;
 
-@Builder
+@Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class WeatherViewDto {
-    private String name;
-    private String country;
-    private String state;
-    private double lat;
-    private double lon;
+    private Location location;
     private String weatherIconCode;
     private String weatherDescription;
     private double temperature;
