@@ -32,10 +32,6 @@ public class WeatherServiceImpl implements WeatherService {
         List<Location> userLocations = locationRepository.getLocationsByUserLogin(userLogin);
         List<WeatherViewDto> resultWeathersList = new ArrayList<>();
 
-        if (userLocations.isEmpty()) {
-            throw new RuntimeException();
-        }
-
         for (Location location : userLocations) {
             HttpResponse<String> weatherResponse = weatherApiClient.getWeatherByCoordinates(location.getLat(), location.getLon());
             WeatherViewDto responseWeatherDTO = mapper.map(weatherResponse);
