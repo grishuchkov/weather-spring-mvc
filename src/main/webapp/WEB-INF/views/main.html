@@ -23,11 +23,11 @@
                             <h5 class="card-title" th:text="${weather.location.getName()}">Card title</h5>
 
                             <p class="card-text">
-                                <div th:if="${weather.location.getState() != null}">
+                                <div th:if="${weather.location.getState() != ''}">
                                     <span th:text="${weather.location.getCountry()} + ' | ' + ${weather.location.getState()}"></span>
                                 </div>
 
-                                <div th:if="${weather.location.getState() == null}">
+                                <div th:if="${weather.location.getState() == ''}">
                                     <span th:text="${weather.location.getCountry()}"></span>
                                 </div>
 
