@@ -1,4 +1,4 @@
-package ru.grishuchkov.weather.service.ifc;
+package ru.grishuchkov.weather.apiclient.ifc;
 import java.net.http.HttpResponse;
 
 public interface WeatherApiClient {

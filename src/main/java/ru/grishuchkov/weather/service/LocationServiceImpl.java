@@ -9,7 +9,7 @@ import ru.grishuchkov.weather.entity.Location;
 import ru.grishuchkov.weather.entity.User;
 import ru.grishuchkov.weather.repo.ifc.LocationRepository;
 import ru.grishuchkov.weather.service.ifc.LocationService;
-import ru.grishuchkov.weather.service.ifc.WeatherApiClient;
+import ru.grishuchkov.weather.apiclient.ifc.WeatherApiClient;
 
 import java.io.IOException;
 import java.net.http.HttpResponse;

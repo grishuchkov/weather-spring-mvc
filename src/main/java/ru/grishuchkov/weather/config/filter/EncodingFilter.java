@@ -1,4 +1,4 @@
-package ru.grishuchkov.weather;
+package ru.grishuchkov.weather.config.filter;
 
 import org.springframework.web.filter.GenericFilterBean;
 

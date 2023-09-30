@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.grishuchkov.weather.dto.response.WeatherViewDto;
 import ru.grishuchkov.weather.entity.Location;
 import ru.grishuchkov.weather.repo.ifc.LocationRepository;
-import ru.grishuchkov.weather.service.ifc.WeatherApiClient;
+import ru.grishuchkov.weather.apiclient.ifc.WeatherApiClient;
 import ru.grishuchkov.weather.service.ifc.WeatherService;
 import ru.grishuchkov.weather.utils.HttpResponseToWeatherDtoMapper;
 

@@ -1,10 +1,10 @@
-package ru.grishuchkov.weather.service;
+package ru.grishuchkov.weather.apiclient;
 
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
-import ru.grishuchkov.weather.service.ifc.WeatherApiClient;
+import ru.grishuchkov.weather.apiclient.ifc.WeatherApiClient;
 
 import java.net.URI;
 import java.net.http.HttpClient;
