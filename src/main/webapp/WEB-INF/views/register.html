@@ -21,7 +21,7 @@
                 </div>
                 <div class="card shadow-lg">
                     <div class="card-body p-5">
-                        <h1 class="fs-4 card-title fw-bold mb-4">Регистрация:</h1>
+                        <h1 class="fs-4 card-title fw-bold mb-4">Sign up:</h1>
 
 
                         <form th:method="POST" th:action="@{/register}" th:object="${userRegistrationDto}"
@@ -38,7 +38,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="mb-2 text-muted" for="login">Придумайте логин:</label>
+                                <label class="mb-2 text-muted" for="login">Login:</label>
 
                                 <input type="text" id="login" th:field="*{login}" class="form-control" required
                                        autofocus>
@@ -48,7 +48,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="mb-2 text-muted" for="password">Придумайте пароль:</label>
+                                <label class="mb-2 text-muted" for="password">Password:</label>
 
                                 <input id="password" th:field="*{password}" type="password" class="form-control"
                                        name="password" required>
@@ -58,7 +58,7 @@
 
                             <div class="d-flex align-items-center">
                                 <button type="submit" class="btn btn-primary ms-auto">
-                                    Зарегистрироваться
+                                    Sign up
                                 </button>
                             </div>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="card-footer py-3 border-0">
                         <div class="text-center">
-                            Есть аккаунт? <a th:href="login" class="text-dark">Войти</a>
+                            Have account? <a th:href="login" class="text-dark">Log in</a>
                         </div>
                     </div>
                 </div>

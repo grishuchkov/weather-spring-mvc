@@ -22,7 +22,7 @@
                 </div>
                 <div class="card shadow-lg">
                     <div class="card-body p-5">
-                        <h1 class="fs-4 card-title fw-bold mb-4">Вход в систему:</h1>
+                        <h1 class="fs-4 card-title fw-bold mb-4">Login:</h1>
 
                         <form method="POST" th:action="@{/login}" class="needs-validation" autocomplete="off">
 
@@ -37,26 +37,26 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="mb-2 text-muted" for="login">Введите логин:</label>
+                                <label class="mb-2 text-muted" for="login">Enter your login:</label>
                                 <input id="login" class="form-control" name="login" value="" required autofocus>
                                 <div class="invalid-feedback">
-                                    Логин не верный
+                                    Login is invalid
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <div class="mb-2 w-100">
-                                    <label class="text-muted" for="password">Введите пароль:</label>
+                                    <label class="text-muted" for="password">Enter your password:</label>
                                 </div>
                                 <input id="password" type="password" class="form-control" name="password" required>
                                 <div class="invalid-feedback">
-                                    Пароль неверный
+                                    Password is invalid
                                 </div>
                             </div>
 
                             <div class="d-flex align-items-center">
                                 <button type="submit" class="btn btn-primary ms-auto">
-                                    Войти
+                                    Log in
                                 </button>
                             </div>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -65,7 +65,7 @@
 
                     <div class="card-footer py-3 border-0 gap-3">
                         <div class="text-center">
-                            Нет аккаунта? <a th:href="register" class="text-dark">Зарегистрироваться</a>
+                            Don't have account? <a th:href="register" class="text-dark">Sign up</a>
                         </div>
                     </div>
                 </div>

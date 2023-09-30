@@ -37,7 +37,7 @@ public class UserRepositoryImpl implements UserRepository {
         try {
             jdbcTemplate.update(SQL, user.getLogin(), user.getPassword(), user.getRole());
         } catch (DuplicateKeyException e) {
-            throw new DuplicateLoginException("Такой логин уже есть");
+            throw new DuplicateLoginException("A user with this login already exists");
         }
     }
 }
