@@ -33,7 +33,7 @@ public class LocationRepositoryImpl implements LocationRepository {
     @Override
     public List<Location> getLocationsByUserLogin(String login) {
 
-        String SQL = "SELECT name, country, state, latitude, longitude FROM locations WHERE user_login =?";
+        String SQL = "SELECT name, country, state, latitude, longitude FROM locations WHERE user_login =? ORDER BY id DESC";
 
         List<Location> locations = jdbcTemplate.query(SQL, new Object[]{login},
                 new LocationRowMapper())
