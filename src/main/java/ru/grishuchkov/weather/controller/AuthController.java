@@ -26,22 +26,21 @@ public class AuthController {
     }
 
 
-    @GetMapping({"/","/login"})
+    @GetMapping({"/", "/login"})
     public String getLoginPage(@AuthenticationPrincipal Principal principal) {
-        if(principal != null){
+
+        if (principal != null) {
             return "redirect:/main";
         }
-
         return "login";
     }
 
     @GetMapping("/register")
-    public String getRegisterPage(Model model,@AuthenticationPrincipal Principal principal) {
+    public String getRegisterPage(Model model, @AuthenticationPrincipal Principal principal) {
 
-        if(principal != null){
+        if (principal != null) {
             return "redirect:/main";
         }
-
         model.addAttribute("userRegistrationDto", new UserRegistrationDto());
 
         return "register";
@@ -49,7 +48,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public String userRegister(@ModelAttribute("userRegistrationDto") @Valid UserRegistrationDto userRegistrationDto,
-                                   BindingResult bindingResult) {
+                               BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "register";
