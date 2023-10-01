@@ -4,7 +4,7 @@ import ru.grishuchkov.weather.entity.User;
 
 public interface UserRepository {
 
-    User getUserByLogin(String login);
+    User findByLogin(String login);
 
     void save(User user);
 }

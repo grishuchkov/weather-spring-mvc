@@ -21,7 +21,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User getUserByLogin(String login) {
+    public User findByLogin(String login) {
         String SQL = "SELECT * FROM users WHERE login =?";
 
         return jdbcTemplate.query(SQL, new Object[]{login},

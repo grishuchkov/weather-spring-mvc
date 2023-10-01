@@ -1,6 +1,7 @@
 package ru.grishuchkov.weather.controller;
 
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +13,7 @@ import ru.grishuchkov.weather.dto.request.UserRegistrationDto;
 import ru.grishuchkov.weather.service.UserService;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @Validated
@@ -23,20 +25,30 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @GetMapping("/login")
-    public String login() {
+
+    @GetMapping({"/","/login"})
+    public String login(@AuthenticationPrincipal Principal principal) {
+        if(principal != null){
+            return "redirect:/main";
+        }
+
         return "login";
     }
 
     @GetMapping("/register")
-    public String reg(Model model) {
+    public String register(Model model,@AuthenticationPrincipal Principal principal) {
+
+        if(principal != null){
+            return "redirect:/main";
+        }
+
         model.addAttribute("userRegistrationDto", new UserRegistrationDto());
 
         return "register";
     }
 
     @PostMapping("/register")
-    public String registrationUser(@ModelAttribute("userRegistrationDto") @Valid UserRegistrationDto userRegistrationDto,
+    public String userRegister(@ModelAttribute("userRegistrationDto") @Valid UserRegistrationDto userRegistrationDto,
                                    BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {

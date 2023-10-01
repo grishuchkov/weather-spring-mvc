@@ -35,7 +35,7 @@ public class WeatherServiceImpl implements WeatherService {
         HttpResponseToWeatherDtoMapper mapper = new HttpResponseToWeatherDtoMapper();
 
         ExecutorService executor = Executors.newFixedThreadPool(20);
-        List<Location> userLocations = locationRepository.getLocationsByUserLogin(userLogin);
+        List<Location> userLocations = locationRepository.findByUserLogin(userLogin);
 
         List<Future<HttpResponse<String>>> futures = new ArrayList<>();
         List<WeatherViewDto> resultWeathersList = new ArrayList<>();

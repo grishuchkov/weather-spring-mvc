@@ -10,7 +10,7 @@ public interface LocationService {
 
     List<Location> getLocationsByName(String name) throws URISyntaxException, IOException, InterruptedException;
 
-    void saveNewLocationFromUser(Location location, String username);
+    void saveLocationForUserByLogin(Location location, String username);
 
     void deleteUserLocation(Location location, String username);
 }

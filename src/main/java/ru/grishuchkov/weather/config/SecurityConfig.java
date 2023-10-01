@@ -26,23 +26,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .addFilterBefore(new EncodingFilter(), ChannelProcessingFilter.class)
-                .authorizeRequests()
-                .antMatchers("/reg/**", "/register/**", "/login").anonymous()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .failureHandler(new AuthExceptionHandler())
-                .usernameParameter("login")
-                .loginPage("/login")
-                .defaultSuccessUrl("/main")
-                .successForwardUrl("/main")
-                .and()
-                .logout()
-                .logoutSuccessUrl("/login")
-                .and()
-                .httpBasic();
-        http.csrf().disable();
+            .addFilterBefore(new EncodingFilter(), ChannelProcessingFilter.class)
+            .exceptionHandling()
+                .accessDeniedHandler(((request, response, exception) ->
+                        response.sendRedirect("/")
+                ))
+        .and()
+            .authorizeRequests()
+            .antMatchers("/register/**", "/login").permitAll()
+            .anyRequest().authenticated()
+        .and()
+            .formLogin()
+            .failureHandler(new AuthExceptionHandler())
+            .usernameParameter("login")
+            .loginPage("/login")
+            .defaultSuccessUrl("/main")
+            .successForwardUrl("/main")
+        .and()
+            .logout()
+            .logoutSuccessUrl("/login")
+            .and()
+            .httpBasic()
+                .disable();
     }
 
     @Bean

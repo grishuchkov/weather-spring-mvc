@@ -26,18 +26,18 @@ public class LocationRepositoryImpl implements LocationRepository {
 
 
     @Override
-    public void saveNewLocationByUser(Location location, User user) {
+    public void saveForUserLogin(Location location, String login) {
         String SQL = "INSERT INTO locations(user_login, name, country, state, latitude, longitude) VALUES (?,?,?,?,?,?)";
 
         try {
-            jdbcTemplate.update(SQL, user.getLogin(), location.getName(), location.getCountry(), location.getState(), location.getLat(), location.getLon());
+            jdbcTemplate.update(SQL, login, location.getName(), location.getCountry(), location.getState(), location.getLat(), location.getLon());
         } catch (DuplicateKeyException e) {
             throw new DuplicateLocationException("The user already has such a location");
         }
     }
 
     @Override
-    public List<Location> getLocationsByUserLogin(String login) {
+    public List<Location> findByUserLogin(String login) {
 
         String SQL = "SELECT name, country, state, latitude, longitude FROM locations WHERE user_login =? ORDER BY id DESC";
 
@@ -50,7 +50,7 @@ public class LocationRepositoryImpl implements LocationRepository {
     }
 
     @Override
-    public void deleteLocationByCoordinatesAndUserLogin(double lat, double lon, String login) {
+    public void deleteByCoordinatesAndUserLogin(double lat, double lon, String login) {
         String SQL = "DELETE FROM locations WHERE latitude = ? and longitude = ? and user_login = ?";
 
         jdbcTemplate.update(SQL, lat, lon, login);

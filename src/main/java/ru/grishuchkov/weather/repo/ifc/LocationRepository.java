@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface LocationRepository {
 
-    void saveNewLocationByUser(Location location, User user);
+    void saveForUserLogin(Location location, String userLogin);
 
-    List<Location> getLocationsByUserLogin(String login);
+    List<Location> findByUserLogin(String login);
 
-    void deleteLocationByCoordinatesAndUserLogin(double lat, double lon, String login);
+    void deleteByCoordinatesAndUserLogin(double lat, double lon, String login);
 
 }
