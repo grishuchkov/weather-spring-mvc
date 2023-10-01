@@ -27,7 +27,7 @@ public class AuthController {
 
 
     @GetMapping({"/","/login"})
-    public String login(@AuthenticationPrincipal Principal principal) {
+    public String getLoginPage(@AuthenticationPrincipal Principal principal) {
         if(principal != null){
             return "redirect:/main";
         }
@@ -36,7 +36,7 @@ public class AuthController {
     }
 
     @GetMapping("/register")
-    public String register(Model model,@AuthenticationPrincipal Principal principal) {
+    public String getRegisterPage(Model model,@AuthenticationPrincipal Principal principal) {
 
         if(principal != null){
             return "redirect:/main";
