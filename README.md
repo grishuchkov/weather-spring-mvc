@@ -97,7 +97,7 @@ MVC-Tracker – это простой трекер погоды, базирую�
 <a name="author"></a>
 ### Автор проекта:  [Grishuchkov Danila](https://github.com/grishuchkov)
 
-#### Данный репозиторий является реализацией второго учебного проекта из курса [Java Backend Learning](https://zhukovsd.github.io/java-backend-learning-course/)
+#### Данный репозиторий является реализацией учебного проекта из курса [Java Backend Learning](https://zhukovsd.github.io/java-backend-learning-course/)
 
 
 ---
